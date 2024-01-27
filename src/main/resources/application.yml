@@ -1,0 +1,44 @@
+spring:
+  # Database 설정
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/faceanalysis
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none   # create : table을 새로 생성   none : 아무것도 하지 않음
+    properties:
+      hibernate:
+#        show_sql: false   // log를 console에 출력
+        format_sql: true
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.orm.jdbc.bind: trace
+
+server:
+  max-http-header-size: 800MB
+  tomcat:
+    max-http-response-header-size: 100MB
+    max-http-form-post-size: 100MB
+
+
+
+
+# 샘플, 촬영된 사진 저장 경로
+# 샘플 이미지 파일은 ~/data/sample/{sampleId}.jpg로 저장
+# 촬영된 사진은 ~/data/faceImage/...에 저장됨
+file:
+  upload-dir: C:/faceanalysis
+
+# 통신할 서버 주소
+server-link:
+  model: http://localhost:5000/detect_and_classify
